@@ -7,6 +7,13 @@
   <img src="https://github.com/av2xn/SystematicSU/blob/main/SystematicSU.png" alt="SystematicSU Logo" width="512" height="512">
 </p>
 
+> [!CAUTION]
+> **WARNING:** This repository is under heavy development and is **NOT ready for use**. Do NOT use this software in production or daily environments, as it may cause unexpected behavior or data loss.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/status-BROKEN-red?style=for-the-badge" alt="Status">
+</p>
+
 ---
 
 > **Developer Tool — No Security or Privacy Guarantee**
