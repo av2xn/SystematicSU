@@ -1,0 +1,76 @@
+type su, domain;
+type su_exec, exec_type, file_type, system_file_type;
+
+domain_auto_trans(shell, su_exec, su)
+domain_auto_trans(untrusted_app, su_exec, su)
+domain_auto_trans(untrusted_app_25, su_exec, su)
+domain_auto_trans(untrusted_app_27, su_exec, su)
+domain_auto_trans(priv_app, su_exec, su)
+domain_auto_trans(platform_app, su_exec, su)
+domain_auto_trans(system_app, su_exec, su)
+
+allow su self:capability {
+    chown
+    dac_override
+    dac_read_search
+    fowner
+    fsetid
+    kill
+    setgid
+    setuid
+    setpcap
+    net_bind_service
+    net_raw
+    sys_admin
+    sys_chroot
+    sys_ptrace
+    sys_resource
+    mknod
+};
+
+allow su self:capability2 {
+    block_suspend
+};
+
+allow su self:process {
+    fork
+    signal
+    sigchld
+    sigkill
+    sigstop
+    signull
+    getsched
+    setsched
+    getsession
+    getpgid
+    setpgid
+    getcap
+    setcap
+    ptrace
+};
+
+allow su self:fd use;
+allow su self:unix_stream_socket { create connect };
+allow su self:fifo_file rw_file_perms;
+
+allow su shell_exec:file { read execute open getattr execute_no_trans };
+allow su system_file:dir { search read open getattr };
+allow su system_file:file { read open getattr execute execute_no_trans };
+allow su toolbox_exec:file { read execute open getattr execute_no_trans };
+
+allow su devpts:chr_file { read write open getattr ioctl };
+allow su console_device:chr_file { read write open getattr ioctl };
+allow su tty_device:chr_file { read write open getattr ioctl };
+allow su ptmx_device:chr_file { read write open getattr ioctl };
+
+allow su proc:file { read open getattr };
+allow su proc_net:file { read open getattr };
+allow su proc_stat:file { read open getattr };
+
+allow su storage_file:dir { search read open getattr };
+
+allow su init:process { signal sigkill };
+
+allow su servicemanager:binder { call transfer };
+
+permissive su;

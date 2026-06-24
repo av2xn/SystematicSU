@@ -1,0 +1,23 @@
+cc_binary {
+    name: "su",
+    srcs: [
+        "su.c",
+        "pts.c",
+    ],
+    cflags: [
+        "-DANDROID",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+    ],
+    shared_libs: [
+        "libcap",
+    ],
+    stl: "none",
+    system_ext_specific: false,
+    vendor_available: false,
+    recovery_available: false,
+    installable: true,
+    relative_install_path: "xbin",
+}
